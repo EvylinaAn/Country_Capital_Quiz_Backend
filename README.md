@@ -48,9 +48,6 @@ Countries Data API - https://countriesnow.space/api/v0.1/countries/capital
 
 Before getting on code, I started planning my backend requests and functions on Trello, I also used Excalidraw to plan the layout. Although there were a few things I wasn't able to achieve due to time restrictions.
 
-![Planned design](<public/assets/Screenshot 2024-07-13 at 19.59.04.jpg>)
-![Trello board](<public/assets/Screenshot 2024-07-13 at 19.59.19.jpg>)
-
 ## Frontend Repository
 
 https://github.com/EvylinaAn/Country_Capital_Quiz_Frontend
