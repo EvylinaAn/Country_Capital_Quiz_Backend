@@ -39,7 +39,7 @@ const fetchCountriesData = async () => {
 
 // Get random country data from country_list
 const fetchRandomCountryData = () => {
-  const randCountryID = Math.floor(Math.random() * country_list.length);
+  const randCountryID = Math.floor(Math.random() * (country_list.length - 1));
   console.log(country_list[randCountryID]);
   return country_list[randCountryID];
 };
@@ -69,6 +69,7 @@ app.get("/quiz", async (req, res) => {
       await fetchCountriesData();
     } else {
       const randomCountry = fetchRandomCountryData();
+      
       const twoCapitals = fetchTwoFalseCapitals(randomCountry);
       res.json({
         randomCountry: randomCountry.name,
