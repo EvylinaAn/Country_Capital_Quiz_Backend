@@ -37,4 +37,22 @@ const fetchCountriesData = async() => {
     }
 }
 
-// get random country data from country_list
+// Get random country data from country_list
+const fetchRandomCountryData = () => {
+    const randCountryID = Math.floor(Math.random() * country_list.length)
+    console.log(country_list[randCountryID])
+    return country_list[randCountryID]
+}
+
+// Get 2 random capitals from country_list excluding the random country selected
+const fetchTwoFalseCapitals = (randomCountry) => {
+    const filteredCapitals = country_list.filter(country => country.name !== randomCountry.name)
+    const mappedCapitals = filteredCapitals.map(country => country.capital)
+    // save only 2 capitals in an array
+    let twoCapitals = []
+    for (let i = 0; i < 2; i++) {
+        let capitalID = Math.floor(Math.random() * mappedCapitals.length)
+        twoCapitals.push(mappedCapitals[capitalID])
+    }
+    return twoCapitals
+}
