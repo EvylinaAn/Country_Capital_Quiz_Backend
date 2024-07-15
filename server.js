@@ -67,7 +67,7 @@ app.get("/quiz", async (req, res) => {
   try {
     if (!country_list) {
       await fetchCountriesData();
-    } else {
+    }
       const randomCountry = fetchRandomCountryData();
       
       const twoCapitals = fetchTwoFalseCapitals(randomCountry);
@@ -76,7 +76,6 @@ app.get("/quiz", async (req, res) => {
         countryCapital: randomCountry.capital,
         falseCapitals: twoCapitals,
       });
-    }
   } catch (error) {
     res.status(500).json({ error: "Error while fetching data" });
   }
