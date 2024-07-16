@@ -30,7 +30,7 @@ let country_list;
 const fetchCountriesData = async () => {
   try {
     const response = await axios.get(COUNTRIES_URL);
-    country_list = response.data.data;
+    country_list = response.data.data.filter(country => country.capital !== "");
     return country_list;
   } catch (error) {
     console.error("Error fetching country", error);
