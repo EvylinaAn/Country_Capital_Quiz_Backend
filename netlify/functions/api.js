@@ -60,11 +60,11 @@ const fetchTwoFalseCapitals = (randCountry) => {
   return twoCapitals;
 };
 
-api.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.send("Hello Backend World!");
 });
 
-api.get("/quiz", async (req, res) => {
+router.get("/quiz", async (req, res) => {
   try {
     if (!country_list) {
       await fetchCountriesData();
