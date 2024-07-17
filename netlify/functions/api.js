@@ -10,10 +10,13 @@ const api = express();
 api.use(bodyParser.json());
 
 api.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET",
-  })
+    cors({
+        origin: [
+          "http://localhost:3000",
+          "https://capital-quiz-react.netlify.app/"
+        ] ,
+        methods: "GET",
+      })
 );
 
 const port = process.env.PORT || 4000;
