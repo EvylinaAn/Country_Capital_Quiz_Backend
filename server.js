@@ -3,6 +3,7 @@ import express, { response } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import axios from "axios";
+import session from 'express-session';
 
 const app = express();
 
@@ -18,14 +19,21 @@ app.use(
   })
 );
 
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: false } 
+// }));
+
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
-// save API endpoint to variable
-const COUNTRIES_URL = "https://countriesnow.space/api/v0.1/countries/capital";
+// save API endpoint to variable (getting the URL from .env)
+const COUNTRIES_URL = process.env.COUNTRIES_URL
 // save list of countries
 let country_list;
 
@@ -73,6 +81,10 @@ app.get("/quiz", async (req, res) => {
     }
       const randomCountry = fetchRandomCountryData(); 
       const twoCapitals = fetchTwoFalseCapitals(randomCountry);
+      const allCapitals = [randomCountry.capital, ...twoCapitals]
+      
+      // here i store the correct answer in a session instead of a db
+      // req.session.correctAnswer = randomCountry.capital;
       res.json({
         randomCountry: randomCountry.name,
         countryCapital: randomCountry.capital,
