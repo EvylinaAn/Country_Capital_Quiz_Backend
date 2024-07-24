@@ -31,3 +31,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Ignore secret.js file
+secret.js
