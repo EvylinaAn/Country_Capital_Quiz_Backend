@@ -32,6 +32,11 @@ To run this project locally, follow these steps:
 3. Install dependencies   ---   npm install
 4. Start the development server   ---   nodemon/npm start
 5. Navigate to localhost:4000 on the browser
+6. Create a '.env' file in the root and add the necessary variables mentioned below.
+
+## Environment Variables
+
+1. 'PORT': this is the port that will be used: Eg.'4000'
 
 ## Usage
 
