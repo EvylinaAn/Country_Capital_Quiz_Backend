@@ -19,13 +19,6 @@ app.use(
   })
 );
 
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { secure: false } 
-// }));
-
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
@@ -80,10 +73,6 @@ app.get("/quiz", async (req, res) => {
     }
       const randomCountry = fetchRandomCountryData(); 
       const twoCapitals = fetchTwoFalseCapitals(randomCountry);
-      // const allCapitals = [randomCountry.capital, ...twoCapitals]
-      
-      // here i store the correct answer in a session instead of a db
-      // req.session.correctAnswer = randomCountry.capital;
       res.json({
         randomCountry: randomCountry.name,
         countryCapital: randomCountry.capital,
@@ -93,3 +82,56 @@ app.get("/quiz", async (req, res) => {
     res.status(500).json({ error: "Error while fetching data" });
   }
 });
+
+
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { maxAge: 60 * 60 * 1000 } //1 hr
+// }));
+
+// app.get("/quiz", async (req, res) => {
+//   try {
+//     if (!country_list) {
+//       await fetchCountriesData();
+//     }
+//       const randomCountry = fetchRandomCountryData(); 
+//       const twoCapitals = fetchTwoFalseCapitals(randomCountry);
+
+//       // here i store the correct answer in a session instead of a db
+//       const allCapitals = [randomCountry.capital, ...twoCapitals]
+//       const shuffledCapitals = shuffleCapitalsArr(allCapitals)
+//       req.session.correctAnswer = randomCountry.capital;
+
+//       res.json({
+//         randomCountry : randomCountry.name,
+//         options: shuffledCapitals
+//       })
+
+//   } catch (error) {
+//     res.status(500).json({ error: "Error while fetching data" });
+//   }
+// });
+
+// app.post("/checkResponse", (req, res) => {
+//   const { answer } = req.body
+//   const correctAnswer = req.session.correctAnswer
+//   const isCorrect = answer === correctAnswer
+
+//   // clear the ans from session
+//   req.session.correctAnswer = null
+
+//   res.json({
+//     isCorrect: isCorrect,
+//   })
+// })
+
+
+// const shuffleCapitalsArr = (capital) => {
+//   for (let i = capital.length - 1; i > 0; i--) {
+//     const randNum = Math.floor(Math.random() * (i + 1));
+//     [capital[i], capital[randNum]] = [capital[randNum], capital[i]];
+//   }
+//   return capital
+// }
